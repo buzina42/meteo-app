@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {BrowserRouter, Route} from "react-router-dom";
+import 'antd/dist/antd.min.css';
+import './index.css';
+import Tab from "./component/Tab"
 
-function App() {
+const temperature = ()=>{
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <h1>Temp</h1>
+  )
+};
+
+const precipitation = ()=>{
+  return (
+    <h1>Prec</h1>
+  )
+};
+
+const App = () => {
+
+  return (
+    <Tab/>
+/*     <div>
+      <BrowserRouter>
+        <Route path='/temperature' component={temperature}/>
+        <Route path='/precipitation' component={precipitation}/>
+      </BrowserRouter>
+    </div> */
+  )
 }
 
 export default App;
