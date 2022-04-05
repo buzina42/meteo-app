@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +11,9 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import getDataInterval from '../data/getDB.js';
+
+
 
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
@@ -45,16 +49,10 @@ export const data = {
   datasets: [
     {
       label: 'Температура',
-      data: labels.map(() => getRandomArbitrary(0,1000)),
+      data: labels.map(() => getDataInterval()),
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Осадки',
-      data: labels.map(() => getRandomArbitrary(0,1000)),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
+    }
   ],
 };
 

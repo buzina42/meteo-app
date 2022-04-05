@@ -1,31 +1,25 @@
-import React from 'react';
-import {BrowserRouter, Route} from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
 import 'antd/dist/antd.min.css';
 import './index.css';
-import Tab from "./component/Tab"
-
-const temperature = ()=>{
-  return (
-    <h1>Temp</h1>
-  )
-};
-
-const precipitation = ()=>{
-  return (
-    <h1>Prec</h1>
-  )
-};
+import Tab from "./component/Tab.js"
+import useDbData from './data/useDbData.js';
+import openMyDB from './data/openMyDB.js';
+import { storeName, StoreNameContext } from './context/storeName-context.js';
 
 const App = () => {
+  const [name, setName] = useState(null);
 
+  const info = useDbData();
+
+  useContext(StoreNameContext)
+
+  useEffect(() =>{
+    openMyDB(info,name)
+  })
   return (
-    <Tab/>
-/*     <div>
-      <BrowserRouter>
-        <Route path='/temperature' component={temperature}/>
-        <Route path='/precipitation' component={precipitation}/>
-      </BrowserRouter>
-    </div> */
+    <StoreNameContext.Provider value={{name, setName}}>
+      <Tab/>
+    </StoreNameContext.Provider>
   )
 }
 
