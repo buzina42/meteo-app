@@ -1,40 +1,24 @@
-
 import { openDB } from 'idb';
+import { useEffect, useState } from 'react';
+import fetchForDB from "./fetchForDB.js"
 
-const url1 = "./precipitation.json";
-const url2 = "./temperature.json";
 
-fetch(url1)
-/* 
-examplObj = {
-    "t":"1111-11-11",
-    "v":11
-} 
-*/
 
-//Создание базы
-async function doDatabase() {
-  const db = await 
-    openDB("parameters", 1,{
-        upgrade(db) {       
-            db.createObjectStore("precipitation", { keyPath: 'id' });
-                precipitation.forEach(item => {
-                    transaction.objectStore("precipitation").add(item);
-                })
-            db.createObjectStore("temperature", { keyPath: 'id' });
-                temperature.forEach(item => {
-                    transaction.objectStore("temperature").add(item);
-                 })
-        }
-    })
+
+//эффект для загрузки данных с сервера в idb
+function useDbData(props) {
+  const [temperature, setTemperature] = useState(null);
+  const [precipitation, setPrecipitation] = useState(null);
+  
+    useEffect(() => {
+        fetchForDB(props).then(data => {
+          if (props === "temperature") {
+            setTemperature(data);
+          } else setPrecipitation(data);
+         // console.log(data)
+        })
+    }, [])
+    return temperature;
 }
 
-// Получение данных по выбранному интервалу
-
-async function getDataForSelectedInterval(prop) {
-    const db = await openDB("parameters", 1);
-    const transaction = db.transaction(prop.data);
-    const  allIndex = transaction.objectStore(prop.data);
-    let getIndex = await allIndex.getAll(10);
-  } 
-  console.log(doDatabase());
+export default useDbData;

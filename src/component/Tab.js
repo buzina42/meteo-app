@@ -1,8 +1,8 @@
 import React from 'react';
 import { Layout} from 'antd';
-import Select from './Select';
-import Graph from './Graph';
-import SiderPanel from './SiderPanel';
+import Select from './Select.js';
+import Graph from './Graph.js';
+import SiderPanel from './SiderPanel.js';
 
 const { Header, Content, Footer} = Layout;
 
