@@ -2,7 +2,7 @@ import { openDB } from 'idb';
 import { useContext } from "react";
 import { StoreNameContext } from "../context/storeName-context.js";
 
-export default async function openMyDB({info}) {
+export default async function OpenMyDB({info}) {
 	const nameStore = useContext(StoreNameContext)
 	const db = await openDB("parameters", 1,{
 		upgrade(db, transaction) {    

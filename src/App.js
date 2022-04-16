@@ -1,23 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import 'antd/dist/antd.min.css';
-import './index.css';
+import './App.css';
 import Tab from "./component/Tab.js"
 import useDbData from './data/useDbData.js';
-import openMyDB from './data/openMyDB.js';
-import { storeName, StoreNameContext } from './context/storeName-context.js';
+import OpenMyDB from './data/OpenMyDB.js';
+import { StoreNameContext, initialState, storeReducer } from './context/storeName-context.js';
 
 const App = () => {
-  const [name, setName] = useState(null);
-
+  
+  const [state, dispatch] = useReducer(storeReducer, initialState);
   const info = useDbData();
 
-  useContext(StoreNameContext)
-
   useEffect(() =>{
-    openMyDB(info,name)
+    OpenMyDB(info)
   })
   return (
-    <StoreNameContext.Provider value={{name, setName}}>
+    <StoreNameContext.Provider value={{dispatch, state}}>
       <Tab/>
     </StoreNameContext.Provider>
   )
