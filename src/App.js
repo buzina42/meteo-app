@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import 'antd/dist/antd.min.css';
 import './App.css';
 import Tab from "./component/Tab.js"
@@ -9,11 +9,11 @@ import { StoreNameContext, initialState, storeReducer } from './context/storeNam
 const App = () => {
   
   const [state, dispatch] = useReducer(storeReducer, initialState);
-  const info = useDbData();
+  const info = useDbData(state);
 
-  useEffect(() =>{
-    OpenMyDB(info)
-  })
+  // useEffect(() =>{
+  //   OpenMyDB(info)
+  // })
   return (
     <StoreNameContext.Provider value={{dispatch, state}}>
       <Tab/>

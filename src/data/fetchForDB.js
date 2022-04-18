@@ -1,6 +1,7 @@
-export default function fetchForDB (props) {
+export default function fetchForDB ({store}) {
+  console.log(`пропс из fetchForDB: ${store}`)
   
-    return fetch(`http://localhost:7000/${props}`, {
+    return fetch(`http://localhost:7000/${store}`, {
               method: "GET"
               }).then(response => { response.json()})
               .catch((error) => {

@@ -3,9 +3,10 @@ import 'antd/dist/antd.min.css';
 import { Menu } from "antd";
 
 
-export default function NewMenuItem({name, icon, tapMenu, paragraph}) {
+export const NewMenuItem = ({name, icon, tapMenu, paragraph}) => {
     return(
         <Menu.Item
+          key={name}
           icon={icon}
           onClick={()=>tapMenu(name)}
         >  

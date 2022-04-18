@@ -1,19 +1,23 @@
 import React from 'react';
 import { ThunderboltFilled, LineChartOutlined , RadarChartOutlined } from '@ant-design/icons';
 
+
 export const menuName = [
     {
       name:"temperature",
       icon: <ThunderboltFilled />,
-      paragraph: "Температура"
+      paragraph: "Температура",
+      //onClick: foo
     },
     {
       name:"percepication",
       icon: <LineChartOutlined />,
-      paragraph: "Осадки"
+      paragraph: "Осадки",
+      //onClick: foo
     },
     {
       name:"temperature,percepication",
       icon: <RadarChartOutlined />,
-      paragraph: "Соотношение"
+      paragraph: "Соотношение",
+      //onClick: foo
     }];
