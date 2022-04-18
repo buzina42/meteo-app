@@ -31,8 +31,14 @@ export default function SiderPanel() {
             >
             <div className="logo" />
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} >              
-                {menuName.map(item => 
-                    NewMenuItem(item, tapMenu())
+                {menuName.map(({icon, name, paragraph}) => 
+                    <NewMenuItem
+                    icon={icon}
+                    tapMenu={tapMenu}
+                    paragraph={paragraph}
+                    key={name}
+                    name={name}
+                    /> 
                 )}
             </Menu>
         </Sider>
