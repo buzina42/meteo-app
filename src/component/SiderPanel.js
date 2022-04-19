@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import { Layout, Menu } from "antd";
-import { NewMenuItem }  from "./NewMenuItem.js";
 import { menuName } from "./menuName.js";
 import { StoreNameContext } from "../context/storeName-context.js";
 
@@ -32,13 +31,13 @@ export default function SiderPanel() {
             <div className="logo" />
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} >              
                 {menuName.map(({icon, name, paragraph}) => 
-                    <NewMenuItem
-                    icon={icon}
-                    tapMenu={tapMenu}
-                    paragraph={paragraph}
-                    key={name}
-                    name={name}
-                    /> 
+                    <Menu.Item
+                        key={name}
+                        icon={icon}
+                        onClick={()=>tapMenu(name)}
+                    >  
+                        {paragraph}
+                    </Menu.Item>
                 )}
             </Menu>
         </Sider>
