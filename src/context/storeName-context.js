@@ -1,4 +1,6 @@
 import React from "react";
+
+
 export const StoreNameContext = React.createContext();
 
 export const initialState = {
@@ -11,15 +13,13 @@ export const storeReducer = (state, action) => {
             return {
                 ...action.payload
             }
-        case "percepication":
+        case "precipitation":
             return {
-                
                 ...action.payload
             }
-        case "temperature,percepication":
-                return {
-                    
-                    ...action.payload
+        case "temperature,precipitation":
+            return {
+                ...action.payload
                 };
         default:
             return state

@@ -1,19 +1,43 @@
 import { openDB } from 'idb';
-import { useContext } from "react";
-import { StoreNameContext } from "../context/storeName-context.js";
 
-export default async function OpenMyDB(props) {
-	const {state} = useContext(StoreNameContext)
-	const db = await openDB("parameters", 1,{
-		upgrade(db, transaction) {    
-			function addItem(){
-				db.createObjectStore(state, { keyPath: "t" })
-				const store = transaction.objectStore(state);  
-				props.data.forEach(item => store.add(item));
-				store.createIndex("year", "t");
+
+export default async function OpenMyDB({one, two}) {
+	const selectStore = one;
+	const arrData = two;
+
+	const db = await openDB("parameters", 3,{
+		upgrade: (db, oldVersion, newVersion, transaction) => {    
+			//if (oldVersion === 0) createStore();	
+			//if (!db.objectStoreNames.contains(state)) addItem(); 
+			switch (oldVersion) {
+				case 0:
+					console.log("CASE0")
+					if (!db.objectStoreNames.contains(selectStore)) addItem();
+					break;
+				case 1:
+					console.log("CASE1");
+					if (!db.objectStoreNames.contains(selectStore)) addItem();
+				  	break;
+				case 2:
+					console.log("CASE2");
+					if (!db.objectStoreNames.contains(selectStore)) addItem();
+					break;	  
+				default:
+				    console.error('unknown db version');
 			}
-			if (!db.objectStoreNames.contains(state)) addItem();
-		}
-	})
-}
 
+			function addItem(){
+				db.createObjectStore(selectStore, { autoIncrement: true }); 
+				console.log("СОЗДАНИЕ СТОРА");
+				arrData.forEach(item => {
+					transaction.objectStore(selectStore).add(item)
+				});
+				console.log("ЗАГРУЗКА ДАННЫХ В СТОР");
+				transaction.objectStore(selectStore).createIndex("year", "t");
+				console.log("СОЗДАНИЕ ИНДЕКСА");
+			}
+			
+		},
+	});
+	db.close();
+}

@@ -17,7 +17,7 @@ export default function Select() {
                 onChange={onChange} 
                 defaultPickerValue={[
                     moment('1881-01-01', 'YYYY-MM-DD'),
-                    moment('1881-01-02', 'YYYY-MM-DD')]} 
+                    moment('2006-01-02', 'YYYY-MM-DD')]} 
             />
             </Space> 
         </div>

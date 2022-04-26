@@ -1,5 +1,4 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,13 +10,14 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import getDataInterval from '../data/getDB.js';
+import getDataInterval from '../data/getDataIntervalForDB.js';
 
-
-
-function getRandomArbitrary(min, max) {
-    return Math.random() * (max - min) + min;
-}
+// Сюда данные из бд попадают в таком виде
+// [
+//   {t: '1881-01-08', v: -13.3}
+//   {t: '1881-01-09', v: -19.7}
+//   {t: '1881-01-10', v: -24.5}
+// ]
 
 ChartJS.register(
   CategoryScale,
@@ -41,7 +41,7 @@ export const options = {
     },
   },
 };
-
+//здесь должны бить даты из запроса
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 export const data = {
@@ -49,12 +49,13 @@ export const data = {
   datasets: [
     {
       label: 'Температура',
-      data: labels.map(() => getDataInterval()),
+      //здесь показатели для каждой даты функция?
+      data: labels.map(() => {}),
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     }
   ],
-};
+}
 
 
 export default function Graph() {

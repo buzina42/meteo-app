@@ -6,18 +6,15 @@ export const menuName = [
     {
       name:"temperature",
       icon: <ThunderboltFilled />,
-      paragraph: "Температура",
-      //onClick: foo
+      paragraph: "Температура"
     },
     {
-      name:"percepication",
+      name:"precipitation",
       icon: <LineChartOutlined />,
-      paragraph: "Осадки",
-      //onClick: foo
+      paragraph: "Осадки"
     },
     {
-      name:"temperature,percepication",
+      name:"temperature,percipitation",
       icon: <RadarChartOutlined />,
-      paragraph: "Соотношение",
-      //onClick: foo
+      paragraph: "Соотношение"
     }];

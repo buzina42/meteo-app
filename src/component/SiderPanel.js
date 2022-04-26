@@ -14,7 +14,7 @@ export default function SiderPanel() {
             store: props
         }
       })
-      console.log(props)
+      console.log(`пропс из меню ${props}`)
     }
 
     return (
@@ -29,7 +29,7 @@ export default function SiderPanel() {
             } }
             >
             <div className="logo" />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} >              
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={['temperature']} >              
                 {menuName.map(({icon, name, paragraph}) => 
                     <Menu.Item
                         key={name}
