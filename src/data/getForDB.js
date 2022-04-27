@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { StoreNameContext } from "../context/storeName-context.js";
 
 // получить значения по выбранному интервалу(диапазон индексов)
-export default async function useGetDataIntervalForDB(props) {
+export async function useGetDataIntervalForDB(props) {
 
   const {state} = useContext(StoreNameContext)
 
@@ -12,4 +12,12 @@ export default async function useGetDataIntervalForDB(props) {
   let year = await db.getAllFromIndex(state, "year", range);
   console.log("year: ", year);
   return year;
+}
+
+//получить информацию о хранилищах
+export async function getNameStore() {
+  
+  const db = await openDB("parameters", 1);
+  db.count("temperature").then(console.log);
+
 }

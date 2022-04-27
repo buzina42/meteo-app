@@ -11,7 +11,7 @@ import { fakeData } from './data/fakeData.js';
 const App = () => {
   
   const [state, dispatch] =  useReducer(storeReducer, initialState);
- console.log(state)
+
   const info = useDbData(state.store);
 
   function parameterDB(state, info){
@@ -21,6 +21,8 @@ const App = () => {
   }  
 
   useEffect(() =>{
+    //сделать гет запрос стор нейм и каунт
+    
     openMyDB(parameterDB(state, info))
   },[state, info])
 

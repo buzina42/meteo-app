@@ -10,7 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import getDataInterval from '../data/getDataIntervalForDB.js';
+import getDataInterval from '../data/getForDB.js';
 
 // Сюда данные из бд попадают в таком виде
 // [
