@@ -1,23 +1,21 @@
 import { openDB } from 'idb';
-import { useContext } from "react";
-import { StoreNameContext } from "../context/storeName-context.js";
+import addItemForStore from './addItemForStore.js';
 
 // получить значения по выбранному интервалу(диапазон индексов)
-export async function useGetDataIntervalForDB(props) {
-
-  const {state} = useContext(StoreNameContext)
-
+export async function useGetDataIntervalForDB({store, data, data2}) {
+  console.log(data, data2)
   const db = await openDB("parameters", 1);
-  const range = IDBKeyRange.bound(props);//{"1881-01-08","2006-01-15"} 
-  let year = await db.getAllFromIndex(state, "year", range);
+  const range = IDBKeyRange.bound(data, data2);//{"1881-01-08","2006-01-15"} 
+  let year = await db.getAllFromIndex(store, "year", range);
   console.log("year: ", year);
-  return year;
 }
 
 //получить информацию о хранилищах
-export async function getNameStore() {
-  
+export async function getCountStore({data, store}) {
+  console.log(store)
   const db = await openDB("parameters", 1);
-  db.count("temperature").then(console.log);
-
+  let result = await db.count(store)
+      .then(res => {return res})
+      .catch(console.log.bind(console));
+  if (result === 0){ addItemForStore(data, store)};
 }

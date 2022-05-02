@@ -5,29 +5,34 @@ import Tab from "./component/Tab.js"
 import useDbData from './data/useDbData.js';
 import { StoreNameContext, initialState, storeReducer } from './context/storeName-context.js';
 import openMyDB from './data/openMyDB.js';
-import { fakeData } from './data/fakeData.js';
+//import { fakeData } from './data/fakeData.js';
+import { getCountStore, useGetDataIntervalForDB } from './data/getForDB.js';
 
 
 const App = () => {
-  
+ 
   const [state, dispatch] =  useReducer(storeReducer, initialState);
 
-  const info = useDbData(state.store);
-
-  function parameterDB(state, info){
-    let one = state.store;
-    let two = info;
-    return ({one, two});
+  const argumentDB = (state, info, info2=1) => {
+    //console.log(state, info, info2)
+    let store = state.store;
+    let data = info;
+    let data2 = info2
+    return {store, data, data2};
   }  
 
-  useEffect(() =>{
-    //сделать гет запрос стор нейм и каунт
+  const info = useDbData(state.store); 
+  const interval = useGetDataIntervalForDB(argumentDB(state, "1881-01-08","2006-01-15"))
+
+  useEffect(() => {
+  
+    openMyDB();  
+    getCountStore(argumentDB(state, info));
     
-    openMyDB(parameterDB(state, info))
   },[state, info])
 
   return (
-    <StoreNameContext.Provider value={{dispatch,state}}>
+    <StoreNameContext.Provider value={{dispatch, state}}>
       <Tab />
     </StoreNameContext.Provider>
   )

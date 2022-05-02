@@ -1,13 +1,12 @@
 import { openDB } from 'idb';
 
-export async function addItemForStore(propsStore, PropsarrData) {
-    
+export default async function addItemForStore(arrData, store) {
+    console.log(store)
     const db = await openDB("parameters", 1);
-    let transaction = db1.transaction((propsStore), 'readwrite');
-    PropsarrData.forEach(item => {
+    let transaction = db.transaction((store), 'readwrite');
+    arrData.forEach(item => {
         transaction.store.add(item)
     });
-    transaction.store.createIndex("year", "t");
     transaction.done
       .then(() => {
         console.log('Добавлено успешно!');
@@ -15,5 +14,4 @@ export async function addItemForStore(propsStore, PropsarrData) {
       .catch(() => {
         console.error('Что-то пошло не так');
       });
-    db.close();
   }
