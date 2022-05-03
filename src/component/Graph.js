@@ -11,6 +11,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import getDataInterval from '../data/getForDB.js';
+import { fakeData } from '../data/fakeData.js'
 
 // Сюда данные из бд попадают в таком виде
 // [
@@ -42,15 +43,15 @@ export const options = {
   },
 };
 //здесь должны бить даты из запроса
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = fakeData.map(({t}) => {return t;} );
 
 export const data = {
   labels,
   datasets: [
     {
       label: 'Температура',
-      //здесь показатели для каждой даты функция?
-      data: labels.map(() => {}),
+      //здесь показатели для каждой даты 
+      data: fakeData.map(({v}) => {return v;} ),
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     }

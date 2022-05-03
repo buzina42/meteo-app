@@ -1,12 +1,12 @@
 import React, {useContext} from "react";
 import { Layout, Menu } from "antd";
 import { menuName } from "./menuName.js";
-import { StoreNameContext } from "../context/storeName-context.js";
+import { ParameterGraphContext } from "../context/parameter-context.js";
 
 const {Sider} = Layout;
 
 export default function SiderPanel() {
-    const {dispatch} = useContext(StoreNameContext);
+    const {dispatch} = useContext(ParameterGraphContext);
 
     const tapMenu = (props) =>{dispatch({
         type: props,
@@ -14,7 +14,7 @@ export default function SiderPanel() {
             store: props
         }
       })
-      console.log(`пропс из меню ${props}`)
+      console.log(`диспатч из меню ${props}`)
     }
 
     return (
