@@ -3,7 +3,7 @@ import fetchForDB from "./fetchForDB.js"
 
 //эффект для загрузки данных с сервера в idb
 export default function useDbData(props) {
-  console.log(`пропс из useDbData ${props}`);
+  //console.log(`пропс из useDbData ${props}`);
 
   const [temperature, setTemperature] = useState(null);
   const [precipitation, setPrecipitation] = useState(null);

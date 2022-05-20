@@ -5,19 +5,20 @@ import { ParameterGraphContext } from "../context/parameter-context.js";
 
 const { RangePicker } = DatePicker;
 
-export default function Select() {
+export default function SelectDate() {
     const {state, dispatch} = useContext(ParameterGraphContext);
-    
-    const onChangeDate = dateString => {dispatch({
+    //console.log(dispatch);
+
+    const onChange = (dates, dateStrings) => {dispatch({
         type: "dateInterval",
         payload: {
-            startDate: dateString[0]._i,
-            endDate: dateString[1]._i
+            startDate: dateStrings[0],
+            endDate: dateStrings[1]
         }
       })
-      console.log(dateString)
+      console.log(dates, dateStrings)
     }
-    // const onChangeDate= (dates, dateStrings) => {
+    // const onChange = (dates, dateStrings) => {
     //     console.log('From: ', dates[0], ', to: ', dates[1]);
     //     console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
     //   }
@@ -26,7 +27,7 @@ export default function Select() {
         <div>
             <Space direction="vertical" size={20}>
                 <RangePicker 
-                    onChange={onChangeDate} 
+                    onChange={onChange} 
                     defaultPickerValue={[
                         moment(state.startDate, 'YYYY-MM-DD'),
                         moment(state.endDate, 'YYYY-MM-DD')]} 
