@@ -7,8 +7,8 @@ export const initialState = {
         store: 'temperature',
         paragraph: "Температура",
         startDate: '1881-01-01',
-        endDate: '1881-01-31',
-        periodData: []
+        endDate: '1881-12-31',
+        periodData: [],
 };
 
 export const paramReducer = (state, action) => {
@@ -23,7 +23,7 @@ export const paramReducer = (state, action) => {
                 ...state,
                 ...action.payload
             };
-        case "temperature,precipitation":
+        case "twoParam":
             return {
                 ...state,
                 ...action.payload

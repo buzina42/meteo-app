@@ -9,12 +9,13 @@ export default function SiderPanel() {
     const {dispatch} = useContext(ParameterGraphContext);
 
     const tapMenu = (props) =>{dispatch({
-        type: props,
+        type: props.name,
         payload: {
-            store: props
+            store: props.name,
+            paragraph: props.paragraph
         }
       })
-      console.log(`диспатч из меню ${props}`)
+      console.log(`диспатч из меню ${props.name}`)
     }
 
     return (
@@ -30,13 +31,13 @@ export default function SiderPanel() {
             >
             <div className="logo" />
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['temperature']} >              
-                {menuName.map(({icon, name, paragraph}) => 
+                {menuName.map(props => 
                     <Menu.Item
-                        key={name}
-                        icon={icon}
-                        onClick={()=>tapMenu(name)}
+                        key={props.name}
+                        icon={props.icon}
+                        onClick={()=>tapMenu(props)}
                     >  
-                        {paragraph}
+                        {props.paragraph}
                     </Menu.Item>
                 )}
             </Menu>

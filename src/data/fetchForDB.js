@@ -5,5 +5,8 @@ export default function fetchForDB (store) {
               method: "GET"
               })
               .then(response =>  response.json() )
+              .catch(() => {
+                console.error(`На сервере нет документа с именем ${store}`);
+              })
   }
   

@@ -10,6 +10,7 @@ import { getCountStore, getDataIntervalForDB } from './data/getForDB.js';
 const App = () => {
 
   const [state, dispatch] =  useReducer(paramReducer, initialState);
+  console.log(state.store);
   const periodArr = (props) => {dispatch({
     type: "periodArr",
     payload: {
@@ -22,17 +23,36 @@ const App = () => {
   useEffect(() => { 
     openMyDB();  
     getCountStore(state.store, info);
-  },[state.store, info])
+  },[state.store, info]);
 
   const [interval, setInterval] = useState([]);
-  console.log(state.periodData);
+  const [twoLine, setTwoLine] = useState(null);
+
+
   useEffect(()=>{
-    getDataIntervalForDB(state.store, state.startDate, state.endDate)
+    if (state.store === "twoParam"){
+      getDataIntervalForDB("temperature", state.startDate, state.endDate)
       .then(resp => setInterval(resp));
-  },[state.startDate, state.endDate,state.store])
+      getDataIntervalForDB("precipitation", state.startDate, state.endDate)
+      .then(resp => setTwoLine(resp));
+    } else 
+      getDataIntervalForDB(state.store, state.startDate, state.endDate)
+        .then(resp => setInterval(resp));
+  },[state.startDate, state.endDate,state.store]);
+
+function newArr(one, two){
+  const arr = one.map(item =>({
+    ...item,
+    o: two[one.indexOf(item)].v
+  }));
+  console.log(arr)
+  return arr;
+} 
   useEffect(()=>{
-    periodArr(interval);
-  },[interval])
+  if (twoLine){
+    periodArr(newArr(interval, twoLine))
+  } else periodArr(interval);
+  },[interval, twoLine]);
 
   return (
     <ParameterGraphContext.Provider value={{dispatch, state}}>

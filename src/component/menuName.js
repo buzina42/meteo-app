@@ -14,7 +14,7 @@ export const menuName = [
       paragraph: "Осадки"
     },
     {
-      name:"temperature,percipitation",
+      name:"twoParam",
       icon: <RadarChartOutlined />,
       paragraph: "Соотношение"
     }];

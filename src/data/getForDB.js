@@ -3,7 +3,7 @@ import addItemForStore from './addItemForStore.js';
 
 // получить значения по выбранному интервалу(диапазон индексов)
 export async function getDataIntervalForDB(store, data, data2) {
-  console.log("интервал из ибд "+ store, data, data2);
+  console.log("интервал для идб "+ store, data, data2);
   const db = await openDB("parameters", 1);
   const range = IDBKeyRange.bound(data, data2);
   let year = await db.getAllFromIndex(store, "year", range);
