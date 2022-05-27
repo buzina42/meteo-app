@@ -7,7 +7,7 @@ export const initialState = {
         store: 'temperature',
         paragraph: "Температура",
         startDate: '1881-01-01',
-        endDate: '1881-12-31',
+        endDate: '2006-12-31',
         periodData: [],
 };
 

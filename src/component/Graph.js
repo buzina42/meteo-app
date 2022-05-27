@@ -11,7 +11,6 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { ParameterGraphContext} from "../context/parameter-context.js";
-//import { fakeData } from "../data/fakeData.js"
 
 ChartJS.register(
   CategoryScale,
@@ -51,7 +50,8 @@ export default function Graph() {
         position: 'left',
         title: {
           display: true,
-          text: 'Температура °С'
+          text: 'Температура °С',
+          color: 'rgb(255, 99, 132)'
         },
       },
       y1: {
@@ -63,7 +63,8 @@ export default function Graph() {
         },
         title: {
           display: true,
-          text: 'Осадки мм'
+          text: 'Осадки мм',
+          color: 'rgb(53, 162, 235)'
         },
       },
     },

@@ -45,13 +45,36 @@ function newArr(one, two){
     ...item,
     o: two[one.indexOf(item)].v
   }));
-  console.log(arr)
+  //console.log(arr)
   return arr;
 } 
+
+const collapseParam = (arr) =>{
+  const collapseArr = arr => {
+    let size = 15; //размер подмассива
+    let subarray = []; //массив в который будет выведен результат.
+    for (let i = 0; i < Math.ceil(arr.length / size); i++){
+        subarray[i] = arr.slice((i*size), (i*size) + size);
+    }
+    return subarray
+  }
+  const allArr = item => {return item.reduce((acc, item) => {return acc + item.v},0)};
+  const newArr = collapseArr(arr);
+  const result = newArr.map( item => ({
+    "t": item[0].t +" - "+ item[item.length-1].t,
+    "v": Math.floor(allArr(item) / item.length * 10)/10
+  }))
+  return result;
+}
+
   useEffect(()=>{
   if (twoLine){
-    periodArr(newArr(interval, twoLine))
-  } else periodArr(interval);
+    twoLine.length > 1000 
+    ? periodArr(newArr(collapseParam(interval), collapseParam(twoLine))) 
+    : periodArr(newArr(interval, twoLine))  
+  } else interval.length > 1000 
+        ? periodArr(collapseParam(interval)) 
+        : periodArr(interval);
   },[interval, twoLine]);
 
   return (
